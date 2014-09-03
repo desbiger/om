@@ -1,13 +1,12 @@
 var Myscripts = {
 
     init: function(){
-        Myscripts.startFancybox();
-        Myscripts.startBxSlider();
-        Myscripts.startJCarousel();
-        Myscripts.anchorsScroll();
+        Myscripts.loadPlugins();
+        Myscripts.scrollAnchors();
         Myscripts.pageUp();
+        Myscripts.usesFeedback();
     },
-    startFancybox: function(){
+    loadPlugins: function(){
         $('.fancybox').fancybox({
             padding: 0
         });
@@ -18,25 +17,24 @@ var Myscripts = {
                 $(".fancybox-skin").css("background","none");
             }
         });
-    },
-    startBxSlider: function(){
+
         $('.slides').bxSlider({
                 pause: 100,
                 useCSS: false
             }
         );
+
+        jQuery('.d-carousel .carousel').jcarousel({
+            scroll: 1,
+            wrap: 'circular'
+        });
+
     },
-    anchorsScroll: function(){
+    scrollAnchors: function(){
         $('.anchors a').click(function(){
             var anchor = $(this).attr("href");
             var top = $(anchor).offset().top;
             $('html,body').animate({scrollTop : top},500);
-        });
-    },
-    startJCarousel: function(){
-        jQuery('.d-carousel .carousel').jcarousel({
-            scroll: 1,
-            wrap: 'circular'
         });
     },
     pageUp: function(){
@@ -53,5 +51,27 @@ var Myscripts = {
             $('html,body').animate({scrollTop:0},500);
         });
 
+    },
+    usesFeedback: function(){
+        $('.feedback .submit').click(function(){
+            var $name = $(this).parent().children('.name');
+            var $phone = $(this).parent().children('.phone');
+
+            $name.next('.error').remove();
+            if ($name.val() == '' && $phone.val() == '' ){
+                var $error = $name.next('.error');
+                if (!$error.length){
+                    $name.after("<p class='error'>Введите имя или телефон</p>");
+                }
+            }
+        });
+
+        $('.attach').click(function(){
+            $(this).next('.attach_ok').remove();
+        });
+
+        $('input[type=file]').change(function(){
+            $(this).parent().children('.attach').after('<i class="attach_ok"></i>');
+        });
     }
 };

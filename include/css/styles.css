@@ -404,6 +404,9 @@ h2 {
 #experts .star > ul > li:hover .contacts {
     display: block;
 }
+#experts .star > ul > li:hover .name {
+    z-index: 1;
+}
 
 #experts .star > ul > li:hover .info {
     background-color: #fff;
@@ -427,7 +430,7 @@ h2 {
     position: absolute;
     top: -8px;
     width: 240px;
-    z-index: 1;
+    z-index: 0;
 }
 
 #experts .name {
@@ -435,7 +438,6 @@ h2 {
     font-size: 20px;
     font-weight: 400;
     position: relative;
-    z-index: 2;
 }
 
 #experts .seat {
@@ -1054,9 +1056,9 @@ h2 {
     z-index: 100;
 }
 .finish a{
-    background: url("../img/button.png") no-repeat center 4px;
+    background: url("../img/btn.png") no-repeat center 4px;
     color: #000;
-    display: inline-block;
+    display: block;
     cursor: pointer;
     font-weight: 400;
     font-size: 26px;

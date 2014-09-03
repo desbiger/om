@@ -36,7 +36,6 @@
 			нашу компанию"
 			<br>
 			<br>
-			<br>
 			<a class="button" href="/">Ок</a>
 		</div>
 	<?
