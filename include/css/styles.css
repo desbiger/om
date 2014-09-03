@@ -757,13 +757,13 @@ h2 {
 }
 
 #reviews ul li {
-    height: 150px;
+    /*height: 150px;*/
 }
 
 #reviews ul li .box {
     overflow: hidden;
     margin: 0 auto;
-    height: 155px;
+    /*height: 155px;*/
     width: 790px;
 }
 

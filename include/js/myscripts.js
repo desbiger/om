@@ -19,10 +19,10 @@ var Myscripts = {
         });
 
         $('.slides').bxSlider({
-                pause: 100,
-                useCSS: false
-            }
-        );
+            pause: 100,
+            useCSS: false,
+            adaptiveHeight: true
+        });
 
         jQuery('.d-carousel .carousel').jcarousel({
             scroll: 1,
