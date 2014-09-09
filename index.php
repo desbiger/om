@@ -18,26 +18,35 @@
 		if ($_FILES['file']) {
 			$PROP['FILE'] = CFile::SaveFile($_FILES['file'], 'iblock');
 		}
-		$id = $element->Add(array(
+		$id     = $element->Add(array(
 				'IBLOCK_ID' => 7,
 				'NAME' => 'Новая заявка от ' . $_POST['name'],
 				'DETAIL_TEXT' => $_POST['message'],
 				'PROPERTY_VALUES' => $PROP
 		));
-		LocalRedirect('/?finish=yes&element_id='.$id);
+		$fields = array(
+				'USER_NAME' => $_POST['name'],
+				'PHONE' => $_POST['phone'],
+				'EMAIL' => $_POST['email'],
+				'DETAIL_TEXT' => $_POST['message']
+		);
+		CEvent::Send('ZAYAVKA', "s1", $fields);
+
+		LocalRedirect('/?finish=yes&element_id=' . $id);
 
 	}
 	elseif ($_GET['finish']) {
 		?>
 		<div class = "finish">
-			<span class="header">Спасибо, Ваша заявка№ <?=$_REQUEST['element_id']?> от <?=date('d/m Yг.')?> принята.</span>
+			<span class = "header">Спасибо, Ваша заявка№ <?= $_REQUEST['element_id'] ?> от <?= date('d/m Yг.') ?> принята.</span>
 			В самое ближайшее
 			время с Вами свяжуться наши специалисты. Благодарим за обращение в
 			нашу компанию
 			<br>
-			OM2B – Отлаженный Механизм для Вашего Бизнеса
+			<strong>OM2B – Отлаженный Механизм для Вашего Бизнеса.</strong>
 			<br>
-			<a class="button" href="/">Ок</a>
+			Благодарим за обращение в нашу компанию!
+			<a class = "button" href = "/">ОK</a>
 		</div>
 	<?
 	}
